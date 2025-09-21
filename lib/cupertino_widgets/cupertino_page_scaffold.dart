@@ -15,26 +15,20 @@ class TestScreen extends StatelessWidget {
         brightness: Brightness.dark,
       ),
       child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            CupertinoButton(
-              child: Text(
-                'Cupertino Button',
-                style: TextStyle(color: Colors.white, fontSize: 22),
+        child: SizedBox(
+          height: 100,
+          width: 100,
+          child: CupertinoContextMenu(
+            enableHapticFeedback: true,
+            actions: [
+              CupertinoContextMenuAction(child: Text('Share it')),
+              CupertinoContextMenuAction(
+                child: Text('Send it to....'),
+                onPressed: () => Navigator.pop(context),
               ),
-              onPressed: () {},
-            ),
-            SizedBox(height: 20),
-            CupertinoButton.filled(
-              color: Colors.black,
-              child: Text(
-                'Cupertino Button',
-                style: TextStyle(color: Colors.white, fontSize: 22),
-              ),
-              onPressed: () {},
-            ),
-          ],
+            ],
+            child: Icon(Icons.facebook, size: 72, color: Colors.white),
+          ),
         ),
       ),
     );
