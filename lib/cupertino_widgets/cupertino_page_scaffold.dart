@@ -17,34 +17,28 @@ class TestScreen extends StatelessWidget {
       child: Center(
         child: CupertinoButton(
           child: Text(
-            'Cupertino Action Sheet',
-            style: TextStyle(color: Colors.white),
+            'Alert Dialog ⚠️',
+            style: TextStyle(color: Colors.white, fontSize: 22),
           ),
           onPressed: () {
-            showCupertinoSheet(
+            showCupertinoDialog(
               context: context,
-              builder: (context) {
-                return CupertinoActionSheet(
-                  actionScrollController: ScrollController(
-                    initialScrollOffset: 0.5,
-                  ),
-                  message: Text('Action Sheet'),
-                  actions: <CupertinoActionSheetAction>[
-                    CupertinoActionSheetAction(
-                      isDefaultAction: true,
-                      child: Text(
-                        'Pick Image from the gallery',
-                        style: TextStyle(color: Colors.white),
-                      ),
+              builder: (BuildContext context) {
+                return CupertinoAlertDialog(
+                  title: Text('Alert ⚠️'),
+                  content: Text('Flutter Mentorship Round3'),
+                  actions: [
+                    CupertinoDialogAction(
+                      child: Text('No'),
                       onPressed: () {
                         Navigator.pop(context);
                       },
                     ),
-                    CupertinoActionSheetAction(
+                    CupertinoDialogAction(
+                      child: Text('Yes', style: TextStyle(color: Colors.white)),
                       onPressed: () {
                         Navigator.pop(context);
                       },
-                      child: Text('Cancel'),
                     ),
                   ],
                 );
