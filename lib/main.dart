@@ -1,4 +1,4 @@
-import 'package:cupertino_widgets_test/cupertino_widgets/test_screen.dart';
+import 'package:cupertino_widgets_test/cupertino_widgets/cupertino_page_scaffold.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
