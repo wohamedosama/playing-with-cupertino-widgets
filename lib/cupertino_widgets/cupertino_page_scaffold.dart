@@ -15,36 +15,26 @@ class TestScreen extends StatelessWidget {
         brightness: Brightness.dark,
       ),
       child: Center(
-        child: CupertinoButton(
-          child: Text(
-            'Alert Dialog ⚠️',
-            style: TextStyle(color: Colors.white, fontSize: 22),
-          ),
-          onPressed: () {
-            showCupertinoDialog(
-              context: context,
-              builder: (BuildContext context) {
-                return CupertinoAlertDialog(
-                  title: Text('Alert ⚠️'),
-                  content: Text('Flutter Mentorship Round3'),
-                  actions: [
-                    CupertinoDialogAction(
-                      child: Text('No'),
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                    ),
-                    CupertinoDialogAction(
-                      child: Text('Yes', style: TextStyle(color: Colors.white)),
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                    ),
-                  ],
-                );
-              },
-            );
-          },
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            CupertinoButton(
+              child: Text(
+                'Cupertino Button',
+                style: TextStyle(color: Colors.white, fontSize: 22),
+              ),
+              onPressed: () {},
+            ),
+            SizedBox(height: 20),
+            CupertinoButton.filled(
+              color: Colors.black,
+              child: Text(
+                'Cupertino Button',
+                style: TextStyle(color: Colors.white, fontSize: 22),
+              ),
+              onPressed: () {},
+            ),
+          ],
         ),
       ),
     );
