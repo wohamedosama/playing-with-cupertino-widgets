@@ -5,29 +5,54 @@ class TestScreen extends StatelessWidget {
   const TestScreen({super.key});
 
   @override
-  // Cupertino widgets provide iOS-style UI components for Flutter apps
-  // CupertinoNavigationBar it's like Appbar widget
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
-      backgroundColor: Colors.deepPurpleAccent,
+      backgroundColor: Colors.indigo,
       navigationBar: CupertinoNavigationBar(
-        //Whether the navigation bar appears transparent when no content is scrolled under.
-        //If you choose false you can see your app bar
         automaticBackgroundVisibility: false,
-        // like title in the app bar widget
         middle: Text('Testing'),
         backgroundColor: Colors.black45,
-        // you can choose here the brightness for the notificatin bar color
         brightness: Brightness.dark,
-
-        //Manually specify the previous route's title when automatically implying the leading back button.
-        previousPageTitle: 'String',
-        leading: IconButton(
-          onPressed: () {},
-          icon: Icon(Icons.arrow_back, color: Colors.white),
+      ),
+      child: Center(
+        child: CupertinoButton(
+          child: Text(
+            'Cupertino Action Sheet',
+            style: TextStyle(color: Colors.white),
+          ),
+          onPressed: () {
+            showCupertinoSheet(
+              context: context,
+              builder: (context) {
+                return CupertinoActionSheet(
+                  actionScrollController: ScrollController(
+                    initialScrollOffset: 0.5,
+                  ),
+                  message: Text('Action Sheet'),
+                  actions: <CupertinoActionSheetAction>[
+                    CupertinoActionSheetAction(
+                      isDefaultAction: true,
+                      child: Text(
+                        'Pick Image from the gallery',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                    ),
+                    CupertinoActionSheetAction(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: Text('Cancel'),
+                    ),
+                  ],
+                );
+              },
+            );
+          },
         ),
       ),
-      child: Column(children: [Container()]),
     );
   }
 }
