@@ -9,7 +9,7 @@ class TestScreen extends StatefulWidget {
 }
 
 class _TestScreenState extends State<TestScreen> {
-  double value = 100;
+  bool isLight = false;
 
   @override
   Widget build(BuildContext context) {
@@ -22,23 +22,17 @@ class _TestScreenState extends State<TestScreen> {
         brightness: Brightness.dark,
       ),
       child: Padding(
-        padding: const EdgeInsets.only(left: 16.0, right: 16, top: 150),
+        padding: const EdgeInsets.only(left: 16.0, right: 16),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('${value.toString()} '),
-            SizedBox(height: 30),
-            SizedBox(
-              width: double.infinity,
-              child: CupertinoSlider(
-                min: 10,
-                max: 600,
-                divisions: 10,
-                thumbColor: Colors.black45,
-                value: value,
-                onChanged: (index) {
+            Center(
+              child: CupertinoSwitch(
+                inactiveThumbColor: Colors.grey,
+                value: isLight,
+                onChanged: (isLight) {
                   setState(() {
-                    value = index;
+                    this.isLight = isLight;
                   });
                 },
               ),
