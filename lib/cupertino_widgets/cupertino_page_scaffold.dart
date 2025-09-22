@@ -1,4 +1,3 @@
-import 'package:cupertino_widgets_test/cupertino_widgets/second_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -10,8 +9,6 @@ class TestScreen extends StatefulWidget {
 }
 
 class _TestScreenState extends State<TestScreen> {
-  DateTime dateTime = DateTime(2025, 9, 22, 10, 20);
-
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
@@ -22,17 +19,21 @@ class _TestScreenState extends State<TestScreen> {
         backgroundColor: Colors.black45,
         brightness: Brightness.dark,
       ),
-      child: Center(
-        child: CupertinoButton(
-          child: Text(
-            'Cupertino Page Route',
-            style: TextStyle(color: Colors.white),
-          ),
-          onPressed: () {
-            Navigator.of(
-              context,
-            ).push(CupertinoPageRoute(builder: (context) => SecondPage()));
+      child: CupertinoScrollbar(
+        thickness: 0.6,
+        child: ListView.separated(
+          itemBuilder: (context, index) {
+            return Center(
+              child: Text(
+                '${index + 1}',
+                style: TextStyle(color: Colors.white, fontSize: 28),
+              ),
+            );
           },
+          separatorBuilder: (context, index) {
+            return Divider(color: Colors.black45);
+          },
+          itemCount: 50,
         ),
       ),
     );
