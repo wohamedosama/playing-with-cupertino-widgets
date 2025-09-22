@@ -1,3 +1,4 @@
+import 'package:cupertino_widgets_test/cupertino_widgets/second_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -17,38 +18,20 @@ class _TestScreenState extends State<TestScreen> {
       backgroundColor: Colors.indigo,
       navigationBar: CupertinoNavigationBar(
         automaticBackgroundVisibility: false,
-        middle: Text('Testing'),
+        middle: Text('Playing with Cupertino'),
         backgroundColor: Colors.black45,
         brightness: Brightness.dark,
       ),
       child: Center(
         child: CupertinoButton(
           child: Text(
-            '${dateTime.day} - ${dateTime.month} - ${dateTime.year}',
+            'Cupertino Page Route',
             style: TextStyle(color: Colors.white),
           ),
           onPressed: () {
-            showCupertinoModalPopup(
-              context: context,
-              builder: (BuildContext context) {
-                return Container(
-                  height: 250,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(32),
-                  ),
-                  child: CupertinoDatePicker(
-                    backgroundColor: Colors.black12,
-                    showTimeSeparator: true,
-                    initialDateTime: dateTime,
-                    onDateTimeChanged: (DateTime date) {
-                      setState(() {
-                        dateTime = date;
-                      });
-                    },
-                  ),
-                );
-              },
-            );
+            Navigator.of(
+              context,
+            ).push(CupertinoPageRoute(builder: (context) => SecondPage()));
           },
         ),
       ),
