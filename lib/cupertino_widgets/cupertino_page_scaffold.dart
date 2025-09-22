@@ -8,6 +8,8 @@ class TestScreen extends StatefulWidget {
   State<TestScreen> createState() => _TestScreenState();
 }
 
+final TextEditingController textEditingController = TextEditingController();
+
 class _TestScreenState extends State<TestScreen> {
   @override
   Widget build(BuildContext context) {
@@ -19,21 +21,17 @@ class _TestScreenState extends State<TestScreen> {
         backgroundColor: Colors.black45,
         brightness: Brightness.dark,
       ),
-      child: CupertinoScrollbar(
-        thickness: 0.6,
-        child: ListView.separated(
-          itemBuilder: (context, index) {
-            return Center(
-              child: Text(
-                '${index + 1}',
-                style: TextStyle(color: Colors.white, fontSize: 28),
-              ),
-            );
-          },
-          separatorBuilder: (context, index) {
-            return Divider(color: Colors.black45);
-          },
-          itemCount: 50,
+      child: Padding(
+        padding: const EdgeInsets.only(left: 16.0, right: 16, top: 100),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            CupertinoSearchTextField(
+              keyboardType: TextInputType.phone,
+              backgroundColor: Colors.black45,
+              controller: textEditingController,
+            ),
+          ],
         ),
       ),
     );
