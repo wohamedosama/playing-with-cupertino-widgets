@@ -8,9 +8,9 @@ class TestScreen extends StatefulWidget {
   State<TestScreen> createState() => _TestScreenState();
 }
 
-final TextEditingController textEditingController = TextEditingController();
-
 class _TestScreenState extends State<TestScreen> {
+  double value = 100;
+
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
@@ -22,14 +22,26 @@ class _TestScreenState extends State<TestScreen> {
         brightness: Brightness.dark,
       ),
       child: Padding(
-        padding: const EdgeInsets.only(left: 16.0, right: 16, top: 100),
+        padding: const EdgeInsets.only(left: 16.0, right: 16, top: 150),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            CupertinoSearchTextField(
-              keyboardType: TextInputType.phone,
-              backgroundColor: Colors.black45,
-              controller: textEditingController,
+            Text('${value.toString()} '),
+            SizedBox(height: 30),
+            SizedBox(
+              width: double.infinity,
+              child: CupertinoSlider(
+                min: 10,
+                max: 600,
+                divisions: 10,
+                thumbColor: Colors.black45,
+                value: value,
+                onChanged: (index) {
+                  setState(() {
+                    value = index;
+                  });
+                },
+              ),
             ),
           ],
         ),
