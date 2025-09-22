@@ -1,8 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class TestScreen extends StatelessWidget {
+class TestScreen extends StatefulWidget {
   const TestScreen({super.key});
+
+  @override
+  State<TestScreen> createState() => _TestScreenState();
+}
+
+class _TestScreenState extends State<TestScreen> {
+  DateTime dateTime = DateTime(2025, 9, 22, 10, 20);
 
   @override
   Widget build(BuildContext context) {
@@ -17,36 +24,28 @@ class TestScreen extends StatelessWidget {
       child: Center(
         child: CupertinoButton(
           child: Text(
-            'Cupertino Action Sheet',
+            '${dateTime.day} - ${dateTime.month} - ${dateTime.year}',
             style: TextStyle(color: Colors.white),
           ),
           onPressed: () {
-            showCupertinoSheet(
+            showCupertinoModalPopup(
               context: context,
-              builder: (context) {
-                return CupertinoActionSheet(
-                  actionScrollController: ScrollController(
-                    initialScrollOffset: 0.5,
+              builder: (BuildContext context) {
+                return Container(
+                  height: 250,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(32),
                   ),
-                  message: Text('Action Sheet'),
-                  actions: <CupertinoActionSheetAction>[
-                    CupertinoActionSheetAction(
-                      isDefaultAction: true,
-                      child: Text(
-                        'Pick Image from the gallery',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                    ),
-                    CupertinoActionSheetAction(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      child: Text('Cancel'),
-                    ),
-                  ],
+                  child: CupertinoDatePicker(
+                    backgroundColor: Colors.black12,
+                    showTimeSeparator: true,
+                    initialDateTime: dateTime,
+                    onDateTimeChanged: (DateTime date) {
+                      setState(() {
+                        dateTime = date;
+                      });
+                    },
+                  ),
                 );
               },
             );
